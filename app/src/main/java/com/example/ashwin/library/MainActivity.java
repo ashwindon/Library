@@ -115,6 +115,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     isadmin = d.isIsadmin();
                                     if (isadmin) {
 
+                                        Intent k = new Intent(MainActivity.this, AdminActivity.class);
+                                        startActivity(k);
+                                        //finish();
                                     } else {
                                         Intent i = new Intent(MainActivity.this, action.class);
                                         startActivity(i);
@@ -130,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             // updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            // Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                            // updateUI(null);

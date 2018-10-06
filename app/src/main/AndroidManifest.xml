@@ -24,7 +24,11 @@
             android:name=".action"
             android:label="@string/title_activity_action"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".signup"></activity>
+        <activity android:name=".signup" />
+        <activity
+            android:name=".AdminActivity"
+            android:label="@string/title_activity_admin"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

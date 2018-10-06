@@ -1,55 +1,60 @@
 package com.example.ashwin.library;
 
 public class BookInfo {
-    public String bname = "", author = "", isbn = "";
-    public int bid = 0, qty = 0;
-    public float cost = 0;
+    private String Title;
+    private String Author;
+    private String SubGenre;
+    private String Genre;
+    private String qty;
+    private String Publisher;
+    // private String image;
 
-    public String getBname() {
-        return bname;
+
+    public String getTitle() {
+        return Title;
     }
 
-    public void setBname(String bname) {
-        this.bname = bname;
+    public void setTitle(String title) {
+        Title = title;
     }
 
     public String getAuthor() {
-        return author;
+        return Author;
     }
 
     public void setAuthor(String author) {
-        this.author = author;
+        Author = author;
     }
 
-    public String getIsbn() {
-        return isbn;
+    public String getSubGenre() {
+        return SubGenre;
     }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
+    public void setSubGenre(String subGenre) {
+        SubGenre = subGenre;
     }
 
-    public int getBid() {
-        return bid;
+    public String getGenre() {
+        return Genre;
     }
 
-    public void setBid(int bid) {
-        this.bid = bid;
+    public void setGenre(String genre) {
+        Genre = genre;
     }
 
-    public int getQty() {
+    public String getQty() {
         return qty;
     }
 
-    public void setQty(int qty) {
+    public void setQty(String qty) {
         this.qty = qty;
     }
 
-    public double getCost() {
-        return cost;
+    public String getPublisher() {
+        return Publisher;
     }
 
-    public void setCost(float cost) {
-        this.cost = cost;
+    public void setPublisher(String publisher) {
+        Publisher = publisher;
     }
 }
