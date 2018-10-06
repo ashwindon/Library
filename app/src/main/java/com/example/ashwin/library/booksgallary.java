@@ -21,23 +21,30 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class booksgallary extends Fragment {
 
-
+    RecyclerView recyclerView;
     DatabaseReference ref;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.booksgallary, container, false);
-        //FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        ref = FirebaseDatabase.getInstance().getReference("student");
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        ref = FirebaseDatabase.getInstance().getReference("Books");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // BookInfo b = dataSnapshot.getValue(BookInfo.class);
-                Log.d("TATTIES", "hiiiii");
-                //BookInfo d = new BookInfo();
-                // Log.d("TATTIES",b.getBname());
+                ArrayList<BookInfo> values = new ArrayList<>();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    values.add(ds.getValue(BookInfo.class));
+                }
+                recyclerView.setAdapter(new RecyclerViewAdapter(values));
+
             }
 
             @Override

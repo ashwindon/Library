@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        firebaseAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference();
 
 
@@ -46,8 +46,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonSignup = (Button) findViewById(R.id.loginbttn);
         buttonSignup.setOnClickListener(this);
 
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = "";
+            uid = currentFirebaseUser.getUid();
+            ref = FirebaseDatabase.getInstance().getReference().child("student/" + uid);
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    data d = dataSnapshot.getValue(data.class);
+                    isadmin = d.isIsadmin();
+                    if (isadmin) {
 
-        firebaseAuth = FirebaseAuth.getInstance();
+                        Intent k = new Intent(MainActivity.this, AdminActivity.class);
+                        startActivity(k);
+                        //finish();
+                    } else {
+                        Intent i = new Intent(MainActivity.this, action.class);
+                        startActivity(i);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -63,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String email = editTextUid.getText().toString().trim();
         String password  = editTextPassword.getText().toString().trim();
 
-        //checking if email and passwords are empty
+        Toast.makeText(MainActivity.this, email + password, Toast.LENGTH_LONG).show();
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this,"Please enter email",Toast.LENGTH_LONG).show();
             return;
@@ -75,26 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
-        //if the email and password are not empty
-        //displaying a progress dialog
-
-
-
-        //creating a new user
-//        firebaseAuth.createUserWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        //checking if success
-//                        if(task.isSuccessful()){
-//                            //display some message here
-//                            Toast.makeText(MainActivity.this,"Successfully registered",Toast.LENGTH_LONG).show();
-//                        }else{
-//                            //display some message here
-//                            Toast.makeText(MainActivity.this,"Registration Error", Toast.LENGTH_LONG).show();
-//                        }
-//                    }
-//                });
+//
 
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -136,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             // Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                           // updateUI(null);
+                            // updateUI(null);
                         }
 
                         // ...
@@ -153,8 +162,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         //calling register method on click
+        Log.d("email", editTextUid.toString());
         registerUser();
 
+    }
+
+    public void forgot(View view) {
+        Intent y = new Intent(MainActivity.this, forgotpassword.class);
+        startActivity(y);
     }
 
     public void text_msg(View view) {

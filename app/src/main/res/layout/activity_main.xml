@@ -8,6 +8,7 @@
 
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -15,6 +16,7 @@
         android:paddingTop="70dp"
         android:paddingRight="70dp"
         tools:layout_editor_absoluteX="30dp"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="16dp">
 
 
@@ -65,6 +67,7 @@
             android:layout_height="63dp"
             android:layout_marginTop="32dp"
             android:layout_gravity="center"
+            android:onClick="forgot"
             android:text="Login" />
 
 
@@ -74,6 +77,7 @@
             android:layout_height="wrap_content"
             android:text="Forgot Password?"
             android:paddingTop="15dp"
+            android:onClick="forgot"
             android:textAlignment="center"/>
 
 
