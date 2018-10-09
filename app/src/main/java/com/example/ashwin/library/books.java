@@ -4,31 +4,31 @@ import java.util.Date;
 
 public class books {
 
-    private Date doi, dor;
+    private String doi, dor;
 
-    private int bid;
+    private String BKname;
 
-    public Date getDoi() {
+    public String getDoi() {
         return doi;
     }
 
-    public void setDoi(Date doi) {
+    public void setDoi(String doi) {
         this.doi = doi;
     }
 
-    public Date getDor() {
+    public String getDor() {
         return dor;
     }
 
-    public void setDor(Date dor) {
+    public void setDor(String dor) {
         this.dor = dor;
     }
 
-    public int getBid() {
-        return bid;
+    public String getBKname() {
+        return BKname;
     }
 
-    public void setBid(int bid) {
-        this.bid = bid;
+    public void setBKname(String BKname) {
+        this.BKname = BKname;
     }
 }

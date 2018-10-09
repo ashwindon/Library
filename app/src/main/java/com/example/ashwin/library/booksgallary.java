@@ -33,6 +33,7 @@ public class booksgallary extends Fragment {
         View view = inflater.inflate(R.layout.booksgallary, container, false);
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        getActivity().setTitle("Books Gallery");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         ref = FirebaseDatabase.getInstance().getReference("Books");
@@ -53,8 +54,5 @@ public class booksgallary extends Fragment {
             }
         });
         return view;
-
-
     }
-
 }

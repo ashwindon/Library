@@ -20,6 +20,6 @@ public class Menu4 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getActivity().setTitle("Add Document");
+        getActivity().setTitle("Issued Books");
     }
 }

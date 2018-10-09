@@ -68,6 +68,15 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp" />
 
+            <Button
+                android:id="@+id/issuebtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:background="#2bff00"
+                android:onClick="issue"
+                android:text="Issue Book" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -76,9 +85,9 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/qty_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/qty_id"
                 android:textSize="17dp" />
 
             <TextView

@@ -9,10 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by JEFRI SINGH(ஜெப்ரி சிங்) on 11/4/2016.
- * Organization "The Tuna Group" - Kerala
- */
+
 
 class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private ArrayList<BookInfo> values;
@@ -30,6 +27,10 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.name.setText(values.get(position).getTitle());
         holder.athr.setText(values.get(position).getAuthor());
+        holder.genre.setText(values.get(position).getGenre());
+        holder.publisher.setText(values.get(position).getPublisher());
+        holder.qty.setText(values.get(position).getQty());
+
     }
 
     @Override
@@ -38,12 +39,15 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView name, athr;
+        private TextView name, athr, genre, publisher, qty;
 
         ViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.bname);
             athr = itemView.findViewById(R.id.athr);
+            genre = itemView.findViewById(R.id.genre_id);
+            publisher = itemView.findViewById(R.id.publisher_id);
+            qty = itemView.findViewById(R.id.qty_id);
         }
     }
 }

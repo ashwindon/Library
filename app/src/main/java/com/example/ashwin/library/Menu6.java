@@ -9,17 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class Menu6 extends Fragment {
-
+    View v;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.menu6, container, false);
+        v = inflater.inflate(R.layout.menu6, container, false);
+
+
+        return v;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getActivity().setTitle("Request List");
+        getActivity().setTitle("Logout");
     }
 }

@@ -47,34 +47,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonSignup.setOnClickListener(this);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (user != null) {
-            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-            String uid = "";
-            uid = currentFirebaseUser.getUid();
-            ref = FirebaseDatabase.getInstance().getReference().child("student/" + uid);
-            ref.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    data d = dataSnapshot.getValue(data.class);
-                    isadmin = d.isIsadmin();
-                    if (isadmin) {
-
-                        Intent k = new Intent(MainActivity.this, AdminActivity.class);
-                        startActivity(k);
-                        //finish();
-                    } else {
-                        Intent i = new Intent(MainActivity.this, action.class);
-                        startActivity(i);
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-        }
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -168,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void forgot(View view) {
-        Intent y = new Intent(MainActivity.this, forgotpassword.class);
+        Intent y = new Intent(MainActivity.this, searchbook.class);
         startActivity(y);
     }
 

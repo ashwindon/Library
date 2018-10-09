@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/recycler_item"
+    android:id="@+id/accept_reject"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
@@ -19,9 +19,8 @@
         android:layout_marginTop="10dp"
         android:orientation="vertical">
 
-
         <TextView
-            android:id="@+id/bname"
+            android:id="@+id/stid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -29,9 +28,8 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:textSize="25dp" />
 
-
         <TextView
-            android:id="@+id/athr"
+            android:id="@+id/bkname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -43,50 +41,24 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
+
+            <Button
+                android:id="@+id/acceptbtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Genre : "
-                android:textSize="15dp" />
+                android:layout_marginLeft="30dp"
+                android:background="#2bff00"
+                android:onClick="issue"
+                android:text="Accept" />
 
-            <TextView
-                android:id="@+id/genre_id"
+            <Button
+                android:id="@+id/rejectbtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="Publisher : "
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/publisher_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/qty_id"
-                android:textSize="17dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Books left"
-                android:textSize="13dp" />
+                android:layout_marginLeft="15dp"
+                android:background="#ff1919"
+                android:onClick="issue"
+                android:text="Reject" />
 
         </LinearLayout>
 

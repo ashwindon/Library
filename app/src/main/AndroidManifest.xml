@@ -29,7 +29,12 @@
             android:name=".AdminActivity"
             android:label="@string/title_activity_admin"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".forgotpassword"></activity>
+        <activity android:name=".forgotpassword" />
+        <activity android:name=".searchbook"></activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

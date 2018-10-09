@@ -2,13 +2,21 @@ package com.example.ashwin.library;
 
 public class data {
 
-    public int uid;
+    public int uid, bookqty = 0;
     public boolean isadmin = false;
     private String name, email;
     private books b1[];
 
     public boolean isIsadmin() {
         return isadmin;
+    }
+
+    public int getBookqty() {
+        return bookqty;
+    }
+
+    public void setBookqty(int bookqty) {
+        this.bookqty = bookqty;
     }
 
     public void setIsadmin(boolean isadmin) {
