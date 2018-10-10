@@ -33,6 +33,7 @@ class recycleradapteracceptreject extends RecyclerView.Adapter<recycleradapterac
     DatabaseReference ref;
     int g = 0;
     int o = 0;
+    int m = 0;
     addreqlistdata d = new addreqlistdata();
     private ArrayList<addreqlistdata> values;
 
@@ -58,7 +59,8 @@ class recycleradapteracceptreject extends RecyclerView.Adapter<recycleradapterac
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ref = FirebaseDatabase.getInstance().getReference("student/" + userid + "/blist");
                 if (g == 0) {
-                    Log.d("issuebtn", "HERE4");
+                    Log.d("acceptbtn", Integer.toString(position));
+                    Log.d("acceptbtn", "this main thing");
 
                     ref.child("").push().setValue(b);
 
@@ -66,6 +68,7 @@ class recycleradapteracceptreject extends RecyclerView.Adapter<recycleradapterac
 
                     values.remove(position);
                     getThis().notifyItemRemoved(position);
+
                 }
             }
 
@@ -80,7 +83,7 @@ class recycleradapteracceptreject extends RecyclerView.Adapter<recycleradapterac
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         Log.d("acceptbtn", "go");
-        Log.d("acceptbtn", values.get(position).getBname());
+        //Log.d("acceptbtn", values.get(position).getBname());
         holder.bname.setText(values.get(position).getBname());
 
         Log.d("acceptbtn", "there");
@@ -89,19 +92,28 @@ class recycleradapteracceptreject extends RecyclerView.Adapter<recycleradapterac
         holder.accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Log.d("acceptbtn",""+Integer.toString(position));
+
                 uuid = values.get(position).getUuid();
+
                 final books d = new books();
+                Log.d("acceptbtn", "are you here");
 
                 //String name = x;
                 //final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 // uid = user.getUid();
-                DatabaseReference sref = FirebaseDatabase.getInstance().getReference("Requestlist/" + uuid + "/-LOO5J7zUmGWCh3SZZmQ");
+                final DatabaseReference sref = FirebaseDatabase.getInstance().getReference("Requestlist/" + uuid + "/-LOO5J7zUmGWCh3SZZmQ");
+                Log.d("acceptbtn", "are you here also");
+
                 sref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (o == 0) {
                             books d = new books();
-                            Log.d("stuid", dataSnapshot.getValue().toString());
+                            Log.d("acceptbtn", "are you here also and here also");
+
+                            //
+                            // Log.d("acceptbtn", dataSnapshot.getValue().toString());
                             //int y;
 
                             String doi, dor;
@@ -128,7 +140,7 @@ class recycleradapteracceptreject extends RecyclerView.Adapter<recycleradapterac
                             d.setDor(dor);
 
                             Log.d("acceptbtn", "HERE2");
-
+                            //sref.removeValue();
                             callme(position, d, uuid);
                         }
 
@@ -141,10 +153,8 @@ class recycleradapteracceptreject extends RecyclerView.Adapter<recycleradapterac
                 });
 
 
-                Log.d("issuebtn", "HERE");
 
 
-                Log.d("issuebtn", String.valueOf(u));
 
 
             }
