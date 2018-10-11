@@ -59,7 +59,7 @@ public class issuedbooks extends Fragment {
                     books b = ds.getValue(books.class);
                     String c = ds.getKey();
                     if (!values.contains(ds.getKey())) {
-                        values.add(ds.getValue(books.class));
+                        values.add(b);
                         Log.d("nothing", "" + ds.getKey());
                         out.put(b, ds.getKey());
                     }

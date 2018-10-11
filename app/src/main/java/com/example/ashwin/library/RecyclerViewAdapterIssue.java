@@ -33,6 +33,14 @@ public class RecyclerViewAdapterIssue extends RecyclerView.Adapter<RecyclerViewA
     RecyclerViewAdapterIssue(ArrayList<books> values, HashMap<books, String> out) {
         this.values = values;
         this.out = out;
+        for (books name : out.keySet()) {
+
+            String key = name.toString();
+            String value = out.get(name).toString();
+            System.out.println(key + " " + value);
+
+
+        }
         Amey = new ArrayList<>();
         for (int i = 0; i < values.size(); i++) {
             Amey.add(true);
@@ -77,8 +85,8 @@ public class RecyclerViewAdapterIssue extends RecyclerView.Adapter<RecyclerViewA
                 int pos = getOriginalPos(position);
                 uuid = values.get(pos).getUserid();
 
-
-                String test = "student/" + uuid + "/" + out.get(values.get(pos));
+                Log.d("tp", values.get(pos).toString());
+                String test = "student/" + uuid + "/blist/" + out.get(values.get(position));
                 Log.d("why", "" + test);
                 returnbook(test);
                 String down = "student/" + uuid + "/bookqty";
