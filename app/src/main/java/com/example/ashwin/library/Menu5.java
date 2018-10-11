@@ -20,10 +20,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Menu5 extends Fragment {
     RecyclerView recyclerView;
     DatabaseReference ref;
+    HashMap<addreqlistdata, String> out;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,18 +37,23 @@ public class Menu5 extends Fragment {
         getActivity().setTitle("Request List");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        ref = FirebaseDatabase.getInstance().getReference("RequestList/gjsc95Kf5vOJAhJCSPc1OQ23Gtq2");
+        ref = FirebaseDatabase.getInstance().getReference("RequestList");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //dataSnapshot.getKey()
                 ArrayList<addreqlistdata> values = new ArrayList<>();
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    Log.d("uniquereference", ds.getValue().toString());
-                    values.add(ds.getValue(addreqlistdata.class));
+                out = new HashMap<>();
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    for (DataSnapshot ds : dataSnapshot1.getChildren()) {
+                        Log.d("uniquereference", ds.getValue().toString());
+                        addreqlistdata addreqlistdata = ds.getValue(addreqlistdata.class);
+                        values.add(addreqlistdata);
+                        out.put(addreqlistdata, ds.getKey());
+                        Log.d("uniquereference", "" + ds.getKey());
+                    }
+                    recyclerView.setAdapter(new recycleradapteracceptreject(values, out));
                 }
-                recyclerView.setAdapter(new recycleradapteracceptreject(values));
-
             }
 
             @Override

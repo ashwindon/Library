@@ -84,9 +84,6 @@ public class action extends AppCompatActivity
             case R.id.nav_issued_books:
                 fragment = new issuedbooks();
                 break;
-            case R.id.nav_request_books:
-                fragment = new requestbooks();
-                break;
             case R.id.nav_logout:
                 fragment = new logout();
                 break;

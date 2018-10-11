@@ -15,27 +15,21 @@
         <item
             android:id="@+id/nav_menu3"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Remove Book" />
+            android:title="Add Document" />
         <item
             android:id="@+id/nav_menu4"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Menu" />
+            android:title="Issued Books" />
 
         <item
             android:id="@+id/nav_menu5"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Menu" />
+            android:title="Request List" />
 
         <item
             android:id="@+id/nav_menu6"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Menu" />
-
-        <item
-            android:id="@+id/nav_menu7"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Menu" />
-
+            android:title="Logout" />
 
     </group>
 

@@ -130,6 +130,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //    }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(false);
+    }
+
 
     @Override
     public void onClick(View view) {

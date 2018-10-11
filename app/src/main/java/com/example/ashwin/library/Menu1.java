@@ -28,7 +28,7 @@ public class Menu1 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.menu1, container, false);
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_menu1_view);
         getActivity().setTitle("Books Gallery");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));

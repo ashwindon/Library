@@ -8,7 +8,7 @@
         <item
             android:id="@+id/nav_library_books"
             android:icon="@drawable/ic_library_books"
-            android:title="Books Gallary" />
+            android:title="Books Gallery" />
         <item
             android:id="@+id/nav_search_books"
             android:icon="@drawable/ic_search_books"
@@ -17,10 +17,7 @@
             android:id="@+id/nav_issued_books"
             android:icon="@drawable/ic_issued_books"
             android:title="Issued Books" />
-        <item
-            android:id="@+id/nav_request_books"
-            android:icon="@drawable/ic_request_books"
-            android:title="Request Books" />
+
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"

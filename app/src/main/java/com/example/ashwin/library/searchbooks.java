@@ -12,7 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,10 +26,14 @@ import java.util.ArrayList;
 
 public class searchbooks extends Fragment {
     View view;
+    int h = 0;
     EditText mSearchField;
     Button mSearchBtn;
-
-
+    String uid;
+    int u = 0;
+    int a = 0;
+    int flag = 0;
+    //int qty;
     RecyclerView recyclerView;
 
     DatabaseReference ref;
@@ -46,7 +53,7 @@ public class searchbooks extends Fragment {
         recyclerView.setHasFixedSize(true);
         Log.d("SEARCHEXACT", "HERE3");
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         mSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,29 +65,91 @@ public class searchbooks extends Fragment {
         return view;
     }
 
+
     public void search() {
+
         Log.d("SEARCHEXACT", "HERE69");
         final String searchText = mSearchField.getText().toString().replaceAll("\\s+", "").toUpperCase();
         ref = FirebaseDatabase.getInstance().getReference("Books");
         Log.d("SEARCHEXACT", "HERE70");
-
+        u = 0;
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (u == 0) {
+                    Log.d("SEARCHEXACT", searchText);
+                    //flag = 0;
+                    final ArrayList<BookInfo> values = new ArrayList<>();
+                    for (final DataSnapshot ds : dataSnapshot.getChildren()) {
+                        if (ds.getKey().equals(searchText.toString())) {
+                            flag = 0;
 
-                Log.d("SEARCHEXACT", searchText);
+                            DatabaseReference ifbookqtyavailable = FirebaseDatabase.getInstance().getReference("Books/" + searchText + "/qty");
 
-                ArrayList<BookInfo> values = new ArrayList<>();
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    if (ds.getKey().equals(searchText.toString())) {
-                        values.add(ds.getValue(BookInfo.class));
-                        Log.d("SEARCHEXACT", ds.getValue().toString());
+                            a = 0;
+                            Log.d("righthere", "1st log" + Integer.toString(flag));
 
-                        Log.d("SEARCHEXACT", String.valueOf(values.size()));
+                            ifbookqtyavailable.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if (a == 0) {
+                                        String bookqtyavailable = dataSnapshot.getValue(String.class);
+                                        int availablebookqty;
+                                        availablebookqty = Integer.parseInt(bookqtyavailable);
+                                        if (availablebookqty > 0) {
+
+                                            flag = 1;
+
+                                            values.add(ds.getValue(BookInfo.class));
+
+                                            Log.d("righthere", "2nd log" + Integer.toString(flag));
+                                            Log.d("righthere", "3rd log did you come here");
+
+                                        } else {
+                                            // Log.d("righthere",""+Integer.toString(flag));
+
+                                            Toast.makeText(view.getContext(), "Sorry the book is out of stock", Toast.LENGTH_LONG).show();
+                                        }
+
+                                        Log.d("righthere", "4 th log" + Integer.toString(flag));
+
+                                        a = 1;
+                                    }
+                                }
+
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+                            Log.d("righthere", "5th log " + "" + Integer.toString(flag));
+
+                            Log.d("righthere", "6th log" + Integer.toString(flag));
+
+
+                        }
+
+                        if (flag == 1) {
+
+                            Log.d("righthere", "7th " + Integer.toString(flag));
+                            Log.d("righthere", "8th log" + Integer.toString(flag));
+
+                            //values.add(ds.getValue(BookInfo.class));
+                            Log.d("SEARCHEXACT", ds.getValue().toString());
+
+                            Log.d("SEARCHEXACT", String.valueOf(values.size()));
+                            flag = 0;
+                        }
+
+
                     }
+                    recyclerView.setAdapter(new recycleradapterissue(values));
 
+                    u = 1;
                 }
-                recyclerView.setAdapter(new recycleradapterissue(values));
+
 
             }
 
@@ -90,11 +159,14 @@ public class searchbooks extends Fragment {
             }
         });
 
+
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Search Books");
     }
+
 }

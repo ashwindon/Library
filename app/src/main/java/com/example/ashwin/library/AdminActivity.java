@@ -96,10 +96,6 @@ public class AdminActivity extends AppCompatActivity
             case R.id.nav_menu6:
                 fragment = new Menu6();
                 break;
-
-            case R.id.nav_menu7:
-                fragment = new Menu7();
-                break;
         }
 
         if (fragment != null) {
