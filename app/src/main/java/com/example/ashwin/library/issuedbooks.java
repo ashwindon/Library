@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +22,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class issuedbooks extends Fragment {
 
     private DatabaseReference ref;
     private RecyclerView issued_list;
+    HashMap<books, String> out;
+
 
     @Nullable
     @Override
@@ -47,10 +51,21 @@ public class issuedbooks extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<books> values = new ArrayList<>();
+                ArrayList<String> val = new ArrayList<>();
+                out = new HashMap<>();
+
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    values.add(ds.getValue(books.class));
+
+                    books b = ds.getValue(books.class);
+                    String c = ds.getKey();
+                    if (!values.contains(ds.getKey())) {
+                        values.add(ds.getValue(books.class));
+                        Log.d("nothing", "" + ds.getKey());
+                        out.put(b, ds.getKey());
+                    }
+
                 }
-                issued_list.setAdapter(new RecyclerViewAdapterIssue(values));
+                issued_list.setAdapter(new RecyclerViewAdapterIssue(values, out));
 
             }
 

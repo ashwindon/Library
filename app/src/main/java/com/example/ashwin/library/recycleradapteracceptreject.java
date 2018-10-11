@@ -190,7 +190,7 @@ class recycleradapteracceptreject extends RecyclerView.Adapter<recycleradapterac
                 //int y;
 
                 String doi, dor;
-
+                d.setUserid(uuid);
 
                 Date c = Calendar.getInstance().getTime();
                 //System.out.println("Current time => " + c);

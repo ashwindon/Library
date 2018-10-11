@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class books {
 
-    private String doi, dor;
+    private String doi, dor, userid;
 
     private String BKname;
 
@@ -30,5 +30,13 @@ public class books {
 
     public void setBKname(String BKname) {
         this.BKname = BKname;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 }
